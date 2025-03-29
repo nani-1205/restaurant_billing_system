@@ -3,10 +3,10 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-DB_HOST = "18.60.117.193"  # Replace with your MySQL host
-DB_USER = "nani"  # Replace with your MySQL user
-DB_PASSWORD = "Saijagan@12"  # Replace with your MySQL password
-DB_NAME = "restaurant"  # Replace with your MySQL database name
+DB_HOST = "your_mysql_host"  # Replace with your MySQL host
+DB_USER = "your_mysql_user"  # Replace with your MySQL user
+DB_PASSWORD = "your_mysql_password"  # Replace with your MySQL password
+DB_NAME = "your_mysql_database"  # Replace with your MySQL database name
 
 def get_connection():
     try:
