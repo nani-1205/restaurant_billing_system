@@ -13,5 +13,5 @@ def main():
 if __name__ == "__main__":
     create_tables()  # Ensure tables are created on startup
     if not os.path.exists("restaurant.db"):
-      create_table_module(5) # Create initial tables only if the db is new
+      create_table_module(5) # Create initial tables only if the db is new()
     main()
