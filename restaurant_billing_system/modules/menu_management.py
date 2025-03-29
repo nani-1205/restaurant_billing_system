@@ -1,5 +1,5 @@
 # Requires database.py
-from database import add_menu_item, get_menu_items
+from database.database_manager import add_menu_item, get_menu_items
 
 class MenuItem:
     def __init__(self, item_id, name, category, price):

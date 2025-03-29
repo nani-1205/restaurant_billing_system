@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Table Details</title>
+</head>
+<body>
+  <h1>Table {{ table_id }}</h1>
+  <p>Status: {{ status }}</p>
+
+  <form action="{{ url_for('update_table_status_route') }}" method="post">
+    <input type="hidden" name="table_id" value="{{ table_id }}">
+    <label for="status">Update Status:</label>
+    <select name="status" id="status">
+      <option value="available">Available</option>
+      <option value="occupied">Occupied</option>
+      <option value="reserved">Reserved</option>
+    </select>
+    <input type="submit" value="Update">
+  </form>
+
+  <p><a href="{{ url_for('index') }}">Back to Tables</a></p>
+</body>
+</html>

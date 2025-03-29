@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Billing System</title>
+</head>
+<body>
+    <h1>Welcome to the Restaurant Billing System</h1>
+    <h2>Tables</h2>
+    <ul>
+      {% for table in tables %}
+        <li><a href="{{ url_for('table_details', table_id = table) }}">Table {{ table }}</a></li>
+      {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('menu') }}">View Menu</a></p>
+</body>
+</html>
