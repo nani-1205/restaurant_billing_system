@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a strong secret key
 
+# LOAD MODULES WITH TRY EXCEPT BLOCKS TO SEE ERRORS
 try:
     from modules.menu_management import create_menu_item, list_menu_items
     logging.info("Menu management loaded successfully.")
@@ -39,6 +40,7 @@ try:
         logging.info("Database initialized.")
 except Exception as e:
     logging.exception("Error initializing database.")
+## THE MAIN ROUTES AND ERROR MESSAGING
 
 @app.route("/")
 def index():
@@ -90,7 +92,6 @@ def update_table_status_route():
     except Exception as e:
         logging.exception("Error updating table status.")
         return "An error occurred.", 500
-
 
 #Add order route and billing route.
 

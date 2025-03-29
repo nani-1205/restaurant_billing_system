@@ -2,6 +2,7 @@ from modules.order_taking import get_order_details
 from modules.table_management import get_table_status
 import datetime
 import logging
+from escpos.printer import Serial  # Or Usb, Network, etc.
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,4 +30,12 @@ def generate_kot(order_id, table_id):
         return None
 
 def print_kot(kot_text):
-    print(kot_text)  # Replace with actual printing logic
+    try:
+        # Adjust these settings to match your printer
+        p = Serial(devfile='/dev/ttyUSB1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1.0) #Different location than before
+        p.text(kot_text)
+        p.cut()  # Cut the paper
+        p.close()
+        logging.info("KOT printed successfully.")
+    except Exception as e:
+        logging.error(f"Error printing KOT: {e}")

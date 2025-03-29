@@ -1,4 +1,3 @@
-#modules/order_taking.py
 from database.database_manager import get_connection
 import logging
 

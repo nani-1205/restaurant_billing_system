@@ -131,8 +131,7 @@ def update_table_status(table_id, status):
         logging.info(f"Table {table_id} status updated to {status}.")
     except sqlite3.Error as e:
         logging.error(f"Error updating table status: {e}")
-        if conn:
-            conn.rollback()
+        conn.rollback()
     finally:
         conn.close()
 
