@@ -1,8 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for
-from modules.menu_management import create_menu_item, list_menu_items
-from modules.table_management import get_table_status, update_table_status, create_tables
-from modules.order_taking import create_order, add_item_to_order, get_order_details, complete_order, calculate_order_total
-from modules.billing import generate_bill, print_bill
 import os
 import logging
 
@@ -11,11 +7,38 @@ logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a strong secret key
 
-if not os.path.exists("restaurant.db"):
+try:
+    from modules.menu_management import create_menu_item, list_menu_items
+    logging.info("Menu management loaded successfully.")
+except Exception as e:
+    logging.exception("Error loading menu management module.")
+
+try:
+    from modules.table_management import get_table_status, update_table_status, create_tables
+    logging.info("Table management loaded successfully.")
+except Exception as e:
+    logging.exception("Error loading table management module.")
+
+try:
+    from modules.order_taking import create_order, add_item_to_order, get_order_details, complete_order, calculate_order_total
+    logging.info("Order taking loaded successfully.")
+except Exception as e:
+    logging.exception("Error loading order taking module.")
+
+try:
+    from modules.billing import generate_bill, print_bill
+    logging.info("Billing loaded successfully.")
+except Exception as e:
+    logging.exception("Error loading billing module.")
+
+try:
     from database.database_manager import create_tables as create_db_tables
-    create_db_tables()
-    create_tables(5)
-    logging.info("Database initialized.")
+    if not os.path.exists("restaurant.db"):
+        create_db_tables()
+        create_tables(5)
+        logging.info("Database initialized.")
+except Exception as e:
+    logging.exception("Error initializing database.")
 
 @app.route("/")
 def index():
