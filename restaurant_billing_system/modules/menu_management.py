@@ -1,14 +1,22 @@
 from database.database_manager import add_menu_item, get_menu_items
 from models.menu_item import MenuItem
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 def create_menu_item(name, category, price):
-    add_menu_item(name, category, price)
-    print(f"Menu item '{name}' added successfully.")
+    try:
+        add_menu_item(name, category, price)
+        logging.info(f"Menu item '{name}' added successfully.")
+    except Exception as e:
+        logging.error(f"Error creating menu item: {e}")
+
 
 def list_menu_items():
     items = get_menu_items()
     if not items:
-        print("No menu items found.")
+        logging.info("No menu items found.")
+        return []
     else:
         menu_items_list = []
         for item in items:

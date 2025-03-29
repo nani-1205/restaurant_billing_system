@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Restaurant Billing System</title>
-</head>
-<body>
-    <h1>Welcome to the Restaurant Billing System</h1>
-    <h2>Tables</h2>
-    <ul>
-      {% for table in tables %}
-        <li><a href="{{ url_for('table_details', table_id = table) }}">Table {{ table }}</a></li>
-      {% endfor %}
-    </ul>
-    <p><a href="{{ url_for('menu') }}">View Menu</a></p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mt-5">Welcome to the Restaurant Billing System</h1>
+    <h2 class="mt-4">Tables</h2>
+    <div class="list-group">
+        {% for table in tables %}
+            <a href="{{ url_for('table_details', table_id=table) }}" class="list-group-item list-group-item-action">Table {{ table }}</a>
+        {% endfor %}
+    </div>
+    <p class="mt-3"><a href="{{ url_for('menu') }}" class="btn btn-primary">View Menu</a></p>
+{% endblock %}
