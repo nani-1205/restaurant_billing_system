@@ -1,17 +1,5 @@
-# Requires database.py
 from database.database_manager import add_menu_item, get_menu_items
-
-class MenuItem:
-    def __init__(self, item_id, name, category, price):
-        self.item_id = item_id
-        self.name = name
-        self.category = category
-        self.price = price
-
-    def __str__(self):
-        return f"{self.name} ({self.category}): ${self.price:.2f}"
-
-
+from models.menu_item import MenuItem
 
 def create_menu_item(name, category, price):
     add_menu_item(name, category, price)
@@ -22,11 +10,8 @@ def list_menu_items():
     if not items:
         print("No menu items found.")
     else:
+        menu_items_list = []
         for item in items:
             menu_item = MenuItem(item[0], item[1], item[2], item[3])
-            print(menu_item)
-
-#Example
-if __name__ == '__main__':
-    #create_menu_item("Pizza", "Main Course", 15.99)
-    list_menu_items()
+            menu_items_list.append(str(menu_item))
+        return menu_items_list

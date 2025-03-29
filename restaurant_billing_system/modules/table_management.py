@@ -1,4 +1,3 @@
-# modules/table_management.py
 from database.database_manager import get_table_status, update_table_status, create_tables_db
 
 def get_table_status(table_id):
